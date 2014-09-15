@@ -1,0 +1,12 @@
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\ContactManager.Data.dll.config
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\ContactManager.Data.dll
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\ContactManager.Data.pdb
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\ContactManager.Model.dll
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\EntityFramework.dll
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\ContactManager.Model.pdb
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\EntityFramework.xml
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\obj\Debug\ContactManager.Data.csprojResolveAssemblyReference.cache
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\obj\Debug\ContactManager.Data.dll
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Data\obj\Debug\ContactManager.Data.pdb
