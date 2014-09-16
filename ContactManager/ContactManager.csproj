@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,14 +172,38 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\angular-view-animation.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sb-admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\addcontact-controller.js" />
+    <Content Include="Scripts\app\controllers\contact-details.js" />
+    <Content Include="Scripts\app\controllers\home-controller.js" />
+    <Content Include="Scripts\app\controllers\modal-delete-contact-controller.js" />
+    <Content Include="Scripts\app\directives.js" />
+    <Content Include="Scripts\app\filters.js" />
+    <Content Include="Scripts\app\services.js" />
+    <Content Include="Scripts\app\templates\AddContact.html" />
+    <Content Include="Scripts\app\templates\ContactDetails.html" />
+    <Content Include="Scripts\app\templates\Index.html" />
+    <Content Include="Scripts\app\templates\modalDeleteContacts.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -188,6 +213,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plugins\ui-bootstrap-tpls-0.11.0.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -232,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -244,6 +271,10 @@
     <ProjectReference Include="..\ContactManager.Data\ContactManager.Data.csproj">
       <Project>{232ab685-7e6a-41c0-bbb3-f9a09a92cce1}</Project>
       <Name>ContactManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContactManager.Model\ContactManager.Model.csproj">
+      <Project>{d776a185-4fba-4049-89ec-108de989a9a6}</Project>
+      <Name>ContactManager.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

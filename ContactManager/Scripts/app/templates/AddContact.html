@@ -1,0 +1,68 @@
+﻿<div id="wrapper">
+    <div id="page-wrapper">
+        
+
+        <h2>Dodaj kontakt</h2>
+
+        <form novalidate role="form" name="form" ng-submit="submitForm(form.$valid)">
+            <div class="col-md-12">
+                <h4>Osnovni podaci:</h4>
+                <hr />
+                <div class="form-group">
+                    <label for="Name">Ime</label>
+                    <input ng-model="contactToAdd.name" required type="text" class="form-control" id="Name" name="Name" placeholder="Unesi ime:">
+                    <span ng-show="form.Name.$error.required">Morate upisati ime</span>
+                </div>
+                <div class="form-group">
+                    <label for="Surname">Prezime</label>
+                    <input ng-model="contactToAdd.surname" required type="text" class="form-control" id="Surname" name="Surname" placeholder="Unesi prezime:">
+                    <span ng-show="form.Surname.$error.required">Morate upisati prezime</span>
+                </div>
+                <div class="form-group">
+                    <label for="Address">Adresa:</label>
+                    <input ng-model="contactToAdd.address" ng-minlength=5 required type="text" class="form-control" id="Address" name="Address" placeholder="Unesi adresu:">
+                    <span ng-show="form.Address.$error.minlength">Adresa mora biti duža od 5 slova</span>
+                    <span ng-show="form.Address.$error.required">Morate upisati adresu</span>
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <h4>Emailovi:</h4>
+                <hr />
+                <div ng-repeat="email in contactToAdd.emails" ng-form="lineform">
+                    <div ng-class="{'input-group':$index!=0}">
+                        <input type="email" name="Email" placeholder="Unesi email" ng-model="email.Name" class="form-control" required>
+                        <span class="input-group-btn"><button ng-show="$index!=0" class="glyphicon glyphicon-remove btn btn-danger" type="button" ng-click="remove($index)"></button></span>
+                    </div>
+                    <span ng-show="lineform.Email.$error.required">Morate upisati email</span>
+                    <span ng-show="lineform.Email.$error.email">Morate upisati ispravni email</span>
+                    <div class="panel-body">
+                        <button ng-show="lineform.Email.$valid==true && $index>contactToAdd.emails.length-2" ng-click="add()" class="btn btn-info">Dodaj novi email</button>
+                    </div>
+                </div>
+               
+
+            </div>
+            <div class="col-md-6">
+                <h4>Brojevi telefona:</h4>
+                <hr />
+                <div ng-repeat="telephone in contactToAdd.telephones" ng-form="lineform">
+                    <div ng-class="{'input-group':$index!=0}">
+                        <input type="text" name="Telephone" placeholder="Unesi broj telefona" ng-model="telephone.Number" class="form-control" required>                      
+                        <span class="input-group-btn"><button ng-show="$index!=0" class="glyphicon glyphicon-remove btn btn-danger" type="button" ng-click="removeTelephone($index)"></button></span>   
+                    </div>
+                    <span ng-show="lineform.Telephone.$error.required">Morate upisati telefon</span>  
+                    <div class="panel-body">
+                        <button ng-show="lineform.Telephone.$error.required==false && $index>contactToAdd.telephones.length-2" ng-click="addTelephone()" class="btn btn-info">Dodaj novi telefon</button>
+                    </div>
+              </div>         
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+</div>

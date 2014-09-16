@@ -14,8 +14,8 @@ namespace ContactManager
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<Context>(new MigrateDatabaseToLatestVersion<ContactManager.Data.Context, ContactManager.Data.Migrations.Configuration>());
-            ContactManager.Data.Context.InitializeDatabase();
+           // Database.SetInitializer<Context>(new MigrateDatabaseToLatestVersion<ContactManager.Data.Context, ContactManager.Data.Migrations.Configuration>());
+           // ContactManager.Data.Context.InitializeDatabase();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

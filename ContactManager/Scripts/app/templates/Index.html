@@ -1,0 +1,57 @@
+﻿<div id="wrapper">
+    <div id="page-wrapper">
+        <div>
+            <h2>Svi kontakti</h2>
+            <h3><span class="label label-default" ng-show="contacts.length>0">{{currentPage+1}}/{{noOfPages}}</span></h3>
+            <button style="margin-bottom:10px !important" class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">&laquo;</button>
+            <button style="margin-bottom:10px !important" class="btn btn-primary" ng-disabled="currentPage >= contacts.length/pageSize - 1" ng-click="currentPage=currentPage+1">»</button>
+
+            Pokaži:
+            <select ng-model="pageSize" ng-change="limit()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+            </select>
+            redova
+            <button type="button" class="btn btn-danger" id="DeleteErrors" ng-disabled="!ShowDeletingButton" ng-click="deleteChecked()">
+                OBRIŠI
+            </button>
+        </div>
+        <table class="table example-animate-container table-bordered">
+            <thead>
+
+                <tr>
+                    <th>Obriši</th>
+                    <th class="visible-md visible-lg" ng-class="{success:predicate=='Id'}">ID <i class="glyphicon glyphicon-resize-vertical pull-right" ng-click="predicate = 'Id'; reverse=!reverse"></i></th>
+                    <th class="visible-md visible-lg visible-sm visible-xs" ng-class="{success:predicate=='Name'}">IME <i class="glyphicon glyphicon-resize-vertical pull-right" ng-click="predicate = 'Name'; reverse=!reverse"></i></th>
+                    <th class="visible-md visible-lg visible-sm visible-xs" ng-class="{success:predicate=='Surname'}">PREZIME <i class="glyphicon glyphicon-resize-vertical pull-right" ng-click="predicate = 'Surname'; reverse=!reverse"></i></th>
+                    <th class="visible-md visible-lg" ng-class="{success:predicate=='FormatedDay'}">VRIJEME <i class="glyphicon glyphicon-resize-vertical pull-right" ng-click="predicate = 'FormatedDay'; reverse=!reverse"></i></th>
+                    <th></th>
+                </tr>
+                <strong>FILTERI</strong>
+                <tr class="active">
+                    <th></th>
+                    <th class="visible-md visible-lg"><input type="text" ng-class="{'input-filled':SearchID.length}" ng-model="SearchID" ng-change="filter()" class="form-control" placeholder="Trazi po ID-u..." /></th>
+                    <th class="visible-md visible-lg visible-sm visible-xs"><input type="text" ng-class="{'input-filled':SearchName.length}" ng-model="SearchName" ng-change="filter()" class="form-control" placeholder="Trazi prema imenu..." /></th>
+                    <th class="visible-md visible-lg visible-sm visible-xs"><input type="text" ng-model="SearchSurname" ng-class="{'input-filled':SearchSurname.length}" id="SearchSurname" ng-change="filter()" class="form-control" placeholder="Trazi po prezimenu..." /></th>
+                    <th class="visible-md visible-lg"><input type="text" ng-model="date" cm-datepicker ng-class="{'input-filled':SearchFormatedDay.length}" id="SearchFormatedDay" ng-change="filter()" class="form-control" ng-model="SearchFormatedDay" placeholder="Trazi po datumu ažuriranja.." /></th>
+                    <th class="visible-md visible-lg visible-sm visible-xs">DETALJI</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="animate-repeat1" ng-repeat="contact in contacts|filter:{ Id:SearchID,Name:SearchName,Surname:SearchSurname}|  orderBy: predicate: reverse|startFrom:currentPage*pageSize| limitTo: pageSize">
+                    <td><input type="checkbox" ng-model="contact.checked" ng-click="deletingIsReady()" /></td>
+                    <td class="visible-md visible-lg ">{{contact.Id}}</td>
+                    <td class="visible-md visible-lg visible-sm visible-xs">{{contact.Name}}</td>
+                    <td class="visible-md visible-lg visible-sm visible-xs">{{contact.Surname}}</td>
+                    <td class="visible-md visible-lg" >{{contact.FormatedDay}}</td>
+
+                    <td class="visible-md visible-lg visible-sm visible-xs"><a href="#/ContactDetails/{{contact.Id}}">Detaljno</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
