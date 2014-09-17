@@ -1,8 +1,11 @@
-﻿using ContactManager.Data.Repository;
+﻿using ContactManager.CustomActions;
+using ContactManager.Data.Repository;
 using ContactManager.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
@@ -40,6 +43,40 @@ namespace ContactManager.Controllers
             contactToAdd.DateUpdated = DateTime.Now;
             _contactRepository.AddContact(contactToAdd);
         }
+
+        public ActionResult GetContact(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var contact = _contactRepository.GetContactFullGraph(id);
+            if (contact == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            return new JsonNetResult(contact);
+        }
+        public void UpdateContact(Contact contact)
+        {
+            contact.DateUpdated = DateTime.Now;
+            _contactRepository.UpdateContact(contact);
+        }
+        public JsonResult GetTags()
+        {
+
+            var tags = _contactRepository.GetTags().Select(x => new
+            {
+                x.text
+            }); ;
+            return Json(tags);
+        }
+        public JsonResult getAllContactsWithTags(string[] arrayOfTags)
+        {
+            var contacts = _contactRepository.GetContactsWithTag(arrayOfTags);
+            return Json(contacts);
+        }
+        
 
         public ContactRepository _contactRepository { get; set; }
     }

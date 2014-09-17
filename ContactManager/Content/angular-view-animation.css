@@ -13,7 +13,7 @@
 
         .slide-animation.ng-enter {
             opacity: 0;
-            left: 100px;
+            left: 200px;
         }
 
             .slide-animation.ng-enter.ng-enter-active {

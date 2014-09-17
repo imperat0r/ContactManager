@@ -2,3 +2,4 @@ C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Model\bin\Debu
 C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Model\bin\Debug\ContactManager.Model.pdb
 C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Model\obj\Debug\ContactManager.Model.dll
 C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Model\obj\Debug\ContactManager.Model.pdb
+C:\Users\Vlado\Documents\ContactManagerApplication\ContactManager.Model\obj\Debug\ContactManager.Model.csprojResolveAssemblyReference.cache

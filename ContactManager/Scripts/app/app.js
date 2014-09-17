@@ -1,4 +1,4 @@
-﻿var contactManager = angular.module("contactManager", ['ngRoute', 'ngAnimate','ui.bootstrap']);
+﻿var contactManager = angular.module("contactManager", ['ngRoute', 'ngAnimate', 'angular-loading-bar', 'ui.bootstrap', 'ngTagsInput', 'toaster']);
 
 
 contactManager.config(['$routeProvider',function ($routeProvider) {

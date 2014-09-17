@@ -9,7 +9,8 @@ namespace ContactManager
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/plugins/jquery-ui.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,7 +27,10 @@ namespace ContactManager
                    "~/Scripts/angular.min.js",
                    "~/Scripts/angular-route.min.js",
                    "~/Scripts/angular-animate.min.js",
-                   "~/Scripts/plugins/ui-bootstrap-tpls-0.11.0.min.js"));
+                   "~/Scripts/plugins/ui-bootstrap-tpls-0.11.0.min.js",
+                   "~/Scripts/plugins/ng-tags-input.js",
+                   "~/Scripts/plugins/loading-bar.js",
+                   "~/Scripts/plugins/toaster.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular-app").Include(
                    "~/Scripts/app/app.js",
@@ -42,7 +46,12 @@ namespace ContactManager
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/sb-admin.css",
-                      "~/Content/angular-view-animation.css"));
+                      "~/Content/angular-view-animation.css",
+                      "~/Content/jquery-ui.min.css",
+                      "~/Content/ng-tags-input.css",
+                      "~/Content/ng-tags-input.bootstrap.css",
+                      "~/Content/loading-bar.css",
+                      "~/Content/toaster.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

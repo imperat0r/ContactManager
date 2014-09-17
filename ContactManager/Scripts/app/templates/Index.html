@@ -1,5 +1,6 @@
 ﻿<div id="wrapper">
     <div id="page-wrapper">
+        <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
         <div>
             <h2>Svi kontakti</h2>
             <h3><span class="label label-default" ng-show="contacts.length>0">{{currentPage+1}}/{{noOfPages}}</span></h3>
@@ -17,6 +18,25 @@
             <button type="button" class="btn btn-danger" id="DeleteErrors" ng-disabled="!ShowDeletingButton" ng-click="deleteChecked()">
                 OBRIŠI
             </button>
+            <span class="dropdown" on-toggle="toggled(open)">
+                <a href class="dropdown-toggle" ng-click="getTags()">
+                    Filtriraj po tagovima
+                </a>
+                
+                <ul class="dropdown-menu">
+                    <li ng-repeat="tag in tags">
+                        <a href ng-click="addTag(tag.text)">{{tag.text}}</a>
+                    </li>
+                </ul>
+            </span>
+            <div>
+                Tagovi:
+                <ul style="display:inline" id="tagsFilter">
+                    <li ng-repeat="tag in arrayOfTags|orderBy:'text'" style="display:inline-block">
+                        <span ng-click="removeTag(tag)" class="label label-danger">{{tag}}<i class="glyphicon glyphicon-remove"></i></span> 
+                    </li>
+                </ul>
+            </div>
         </div>
         <table class="table example-animate-container table-bordered">
             <thead>
@@ -35,18 +55,18 @@
                     <th class="visible-md visible-lg"><input type="text" ng-class="{'input-filled':SearchID.length}" ng-model="SearchID" ng-change="filter()" class="form-control" placeholder="Trazi po ID-u..." /></th>
                     <th class="visible-md visible-lg visible-sm visible-xs"><input type="text" ng-class="{'input-filled':SearchName.length}" ng-model="SearchName" ng-change="filter()" class="form-control" placeholder="Trazi prema imenu..." /></th>
                     <th class="visible-md visible-lg visible-sm visible-xs"><input type="text" ng-model="SearchSurname" ng-class="{'input-filled':SearchSurname.length}" id="SearchSurname" ng-change="filter()" class="form-control" placeholder="Trazi po prezimenu..." /></th>
-                    <th class="visible-md visible-lg"><input type="text" ng-model="date" cm-datepicker ng-class="{'input-filled':SearchFormatedDay.length}" id="SearchFormatedDay" ng-change="filter()" class="form-control" ng-model="SearchFormatedDay" placeholder="Trazi po datumu ažuriranja.." /></th>
+                    <th class="visible-md visible-lg"><input type="text" cm-datepicker ng-class="{'input-filled':SearchFormatedDay.length}" id="SearchFormatedDay" ng-change="filter()" class="form-control" ng-model="SearchFormatedDay" placeholder="Trazi po datumu ažuriranja.." /></th>
                     <th class="visible-md visible-lg visible-sm visible-xs">DETALJI</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr class="animate-repeat1" ng-repeat="contact in contacts|filter:{ Id:SearchID,Name:SearchName,Surname:SearchSurname}|  orderBy: predicate: reverse|startFrom:currentPage*pageSize| limitTo: pageSize">
+                <tr class="animate-repeat1" ng-repeat="contact in contacts|filter:{ Id:SearchID,Name:SearchName,Surname:SearchSurname,FormatedDay:SearchFormatedDay}|  orderBy: predicate: reverse|startFrom:currentPage*pageSize| limitTo: pageSize">
                     <td><input type="checkbox" ng-model="contact.checked" ng-click="deletingIsReady()" /></td>
                     <td class="visible-md visible-lg ">{{contact.Id}}</td>
                     <td class="visible-md visible-lg visible-sm visible-xs">{{contact.Name}}</td>
                     <td class="visible-md visible-lg visible-sm visible-xs">{{contact.Surname}}</td>
-                    <td class="visible-md visible-lg" >{{contact.FormatedDay}}</td>
+                    <td class="visible-md visible-lg">{{contact.FormatedDay}}</td>
 
                     <td class="visible-md visible-lg visible-sm visible-xs"><a href="#/ContactDetails/{{contact.Id}}">Detaljno</a></td>
                 </tr>

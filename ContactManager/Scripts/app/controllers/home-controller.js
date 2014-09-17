@@ -1,4 +1,4 @@
-﻿contactManager.controller("HomeController", ['$scope', 'contactsService','$timeout','$filter','$modal', function ($scope, contactsService,$timeout,$filter,$modal) {
+﻿contactManager.controller("HomeController", ['$scope', 'contactsService','$timeout','$filter','$modal','toaster', function ($scope, contactsService,$timeout,$filter,$modal,toaster) {
 
     //PAGINATION AND SORTING
     $scope.currentPage = 0;
@@ -66,6 +66,7 @@
                 });
                 $scope.calculateNumOfPages();
                 $scope.currentPage = 0;
+                toaster.pop('success', "Spremljeno", "Obrisano");
             }, 100);
             angular.forEach($scope.contacts, function (obj, index) {
                 obj.checked = false;
@@ -75,6 +76,50 @@
 
         });
     };
+    $scope.getTags = function () {
+        contactsService.getTags().then(function (result) {
+            if($scope.tags==undefined)
+            $scope.tags = result;
+        });
+    }
+   
+    $scope.arrayOfTags = [];
+    $scope.addTag = function (tagText) {
+        if ($scope.arrayOfTags.indexOf(tagText) === -1) {
+            $scope.arrayOfTags.push(tagText);
+            angular.forEach($scope.tags, function (obj, index) {   
+                if (obj.text == tagText) {                  
+                    $scope.tags.splice(index, 1);
+                }
+            });
+            contactsService.getAllContactsWithTags($scope.arrayOfTags).then(function (results) {
+                angular.forEach(results, function (obj, index) {
+                    obj.checked = false;
+                });
+                $scope.contacts = results;
+                $scope.noOfPages = Math.ceil($scope.contacts.length / $scope.pageSize);
+
+            });
+        }
+    }
     
 
+    $scope.removeTag = function (tagName) {
+        angular.forEach($scope.arrayOfTags, function (obj, index) {
+            if (obj == tagName)
+            {
+                $scope.arrayOfTags.splice(index, 1);
+                $scope.tags.push({ text: tagName })
+                console.log($scope.tags);
+                 contactsService.getAllContactsWithTags($scope.arrayOfTags).then(function (results) {
+                    angular.forEach(results, function (obj, index) {
+                        obj.checked = false;
+                    });
+                    $scope.contacts = results;
+                    $scope.noOfPages = Math.ceil($scope.contacts.length / $scope.pageSize);         
+                });
+            }
+            
+        })
+    }
 }]);

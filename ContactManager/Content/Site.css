@@ -26,3 +26,6 @@ textarea {
   input.ng-invalid.ng-dirty {
     background-color: #FA787E;
   }
+  #tagsFilter li:hover {
+    cursor: pointer;
+}

@@ -1,5 +1,99 @@
 ﻿<div id="wrapper">
     <div id="page-wrapper">
-        detail
+        <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+        <h2>{{contact.Name}} {{contact.Surname}}</h2>
+        <form class="form-horizontal" novalidate name="FormEdit" ng-submit="submitForm(FormEdit.$valid)">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="inputName" class="control-label col-xs-2">Ime:</label>
+                    <div class="col-xs-5">
+                        <p class="form-control-static">{{contact.Name}}</p>
+
+                    </div>
+                    <div class="col-xs-5 input-group">
+                        <input type="text" class="form-control" id="inputName" placeholder="Unesi ime" ng-model="contact.Name" ng-class="{ 'hidden': ! showNameInput }">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning glyphicon glyphicon-pencil" ng-click="showNameInput=true" ng-hide="showNameInput"></button>
+                        </span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="inputSurname" class="control-label col-xs-2">Prezime:</label>
+                    <div class="col-xs-5">
+                        <p class="form-control-static">{{contact.Surname}}</p>
+                    </div>
+                    <div class="col-xs-5 input-group">
+                        <input type="text" class="form-control" id="inputName" placeholder="Unesi prezime" ng-model="contact.Surname" ng-class="{ 'hidden': ! showSurnameInput }">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning glyphicon glyphicon-pencil" ng-click="showSurnameInput=true" ng-hide="showSurnameInput"></button>
+                        </span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="inputAddress" class="control-label col-xs-2">Adresa:</label>
+                    <div class="col-xs-5">
+                        <p class="form-control-static">{{contact.Address}}</p>
+                    </div>
+                    <div class="col-xs-5 input-group">
+                        <input type="text" class="form-control" id="inputName" placeholder="Unesi adresu" ng-model="contact.Address" ng-class="{ 'hidden': ! showAddressInput }">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning glyphicon glyphicon-pencil" ng-click="showAddressInput=true" ng-hide="showAddressInput"></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tagovi:</label>
+                    <tags-input ng-model="contact.Tags" placeholder="Dodaj tag" on-tag-added="tagAdded($tag)" on-tag-removed="tagRemoved($tag)"><auto-complete source="loadTags($query)"></auto-complete></tags-input>
+                </div>
+                <hr />
+               
+
+            </div>
+            <div class="col-md-6">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="../../../Images/noimage.jpg" />
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-6">
+                <h4>Emailovi:</h4>
+                <hr />
+                <div ng-repeat="email in contact.Emails" ng-form="lineform">
+                    <div ng-class="{'input-group':$index!=0}">
+                        <input type="email" name="Email" placeholder="Unesi email" ng-model="email.Name" class="form-control" required>
+                        <span class="input-group-btn"><button ng-show="$index!=0" class="glyphicon glyphicon-remove btn btn-danger" type="button" ng-click="remove($index)"></button></span>
+                    </div>
+                    <span ng-show="lineform.Email.$error.required">Morate upisati email</span>
+                    <span ng-show="lineform.Email.$error.email">Morate upisati ispravni email</span>
+                    <div class="panel-body">
+                        <button ng-show="lineform.Email.$valid==true && $index>contact.Emails.length-2" ng-click="add()" class="btn btn-info">Dodaj novi email</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <h4>Brojevi telefona:</h4>
+                <hr />
+                <div ng-repeat="telephone in contact.Telephones" ng-form="lineform">
+                    <div ng-class="{'input-group':$index!=0}">
+                        <input type="text" name="Telephone" placeholder="Unesi broj telefona" ng-model="telephone.Number" class="form-control" required>
+                        <span class="input-group-btn"><button ng-show="$index!=0" class="glyphicon glyphicon-remove btn btn-danger" type="button" ng-click="removeTelephone($index)"></button></span>
+                    </div>
+                    <span ng-show="lineform.Telephone.$error.required">Morate upisati telefon</span>
+                    <div class="panel-body">
+                        <button ng-show="lineform.Telephone.$error.required==false && $index>contact.Telephones.length-2" ng-click="addTelephone()" class="btn btn-info">Dodaj novi telefon</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <button type="submit" class="btn btn-primary btn-block">Ažuriraj</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
