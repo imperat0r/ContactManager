@@ -6,7 +6,7 @@
     $scope.submitForm = function (isValid) {
         if (isValid) {
             contactsService.addContact($scope.contactToAdd);
-            toaster.pop('success', "Spremljeno", "Kontakt ažuriran");
+            toaster.pop('success', "Spremljeno", "Kontakt spremljen");
             $scope.contactToAdd = { name: '', surname: '', emails: [], telephones: [], tags: [] };
         }
     }

@@ -176,7 +176,7 @@ namespace ContactManager.Data.Repository
                     if (matchedContacts != null)
                         contacts.AddRange(matchedContacts);
                 }
-                return contacts;
+                return contacts.GroupBy(x => x.Id).Select(x => x.First()).ToList();;
             }
             return db.Contacts.ToList();
 

@@ -97,7 +97,8 @@
                     obj.checked = false;
                 });
                 $scope.contacts = results;
-                $scope.noOfPages = Math.ceil($scope.contacts.length / $scope.pageSize);
+                $scope.currentPage = 0;
+                $scope.calculateNumOfPages();
 
             });
         }
@@ -116,7 +117,8 @@
                         obj.checked = false;
                     });
                     $scope.contacts = results;
-                    $scope.noOfPages = Math.ceil($scope.contacts.length / $scope.pageSize);         
+                    $scope.currentPage = 0;
+                    $scope.calculateNumOfPages();
                 });
             }
             
